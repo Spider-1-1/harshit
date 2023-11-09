@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div4">
+<pre>
+    #include < stdio.h >
+    #include < time.h >
+int step=-1;
+void quick(int *, int, int);
+int partition(int *, int, int);
+void quick(int a[], int low, int high) {
+    int pivot;
+    if (low < high) {
+        pivot = partition(a, low, high);
+        quick(a, low, pivot - 1);
+        quick(a, pivot + 1, high);
+    }
+}
+
+int partition(int a[], int low, int high) {
+    int pivot, i, j, temp;
+    pivot = a[high];
+    i = low - 1;
+    for (j = low; j < high; j++) {
+        if (a[j] <= pivot) {
+            i++;
+            temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
+        }
+    }
+    step++;
+    temp = a[i + 1];
+    a[i + 1] = a[high];
+    a[high] = temp;
+    return (i + 1);
+}
+
+int main() {
+	clock_t start=clock();
+    int i, a[10];
+    clock_t end;
+    double cpu_time_used;
+    printf("Enter the arrays\n");
+    for (i = 0; i < 10; i++) {
+    	printf("Enter the array at location %d\t",i+1);
+        scanf("%d", &a[i]);
+    }
+    quick(a, 0,9);
+    printf("Sorted array:");
+    for (i = 0; i < 10; i++) {
+        printf("%d\n", a[i]);
+    }
+        if(step==-1)
+    {
+    printf("Best complexity for quick sort\n");
+	}
+	else
+	{
+	printf("Worst complexity for quick sort\n");
+	}
+    end=clock();
+	cpu_time_used=((double)(end-start))/CLOCKS_PER_SEC;
+	printf("Time taken for search: %lf seconds\n",cpu_time_used);
+}
+
+</pre>
+    </div>
+    <div id="div5">
+<pre>
+    Enter the arrays
+    Enter the array at location 1   8
+    Enter the array at location 2   5
+    Enter the array at location 3   7
+    Enter the array at location 4   2
+    Enter the array at location 5   4
+    Enter the array at location 6   6
+    Enter the array at location 7   7
+    Enter the array at location 8   1
+    Enter the array at location 9   5
+    Enter the array at location 10  7
+    Sorted array:1
+    2
+    4
+    5
+    5
+    6
+    7
+    7
+    7
+    8
+    Worst complexity for quick sort
+    Time taken for search: 7.992000 seconds
+</pre>
+    </div>
+</body>
+</html>

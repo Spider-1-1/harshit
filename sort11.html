@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div4">
+<pre>
+    #include < stdio.h >
+    #include < string.h >
+    #include < time.h >
+    void selection(char str[][10],int size)
+    {
+    int i,j;
+    char temp[10];
+    for(i=0;i&lt;size;i++)
+    {
+    for(j=i+1;j&lt;size;j++)
+    {
+    if(strcmp(str[i],str[j])>0)
+    {
+    strcpy(temp,str[i]);
+    strcpy(str[i],str[j]);
+    strcpy(str[j],temp);
+    }
+    }
+    }
+    }
+    int main()
+    {
+    clock_t start=clock();
+    int i;
+    clock_t end;
+    double cpu_time_used;
+    char str[5][10];
+    for(i=0;i&lt;5;i++)
+    {
+    printf("Enter the strings at %d location\t",i+1);
+    scanf("%s",str[i]);
+    }
+    selection(str,5);
+    printf("Sorted strings are\n");
+    for(i=0;i&lt;5;i++)
+    {
+    printf("%s\n",str[i]);
+    }
+    printf("Best and Worst both complexity are same for selection sort\n");
+    end=clock();
+    cpu_time_used=((double)(end-start))/CLOCKS_PER_SEC;
+    printf("Time taken for search: %lf seconds\n",cpu_time_used);
+    }
+</pre>
+    </div>
+    <div id="div5">
+<pre>
+    Enter the strings at 1 location hello
+    Enter the strings at 2 location hye
+    Enter the strings at 3 location hey
+    Enter the strings at 4 location bye
+    Enter the strings at 5 location book
+    Sorted strings are
+    book
+    bye
+    hello
+    hey
+    hye
+    Best and Worst both complexity are same for selection sort
+    Time taken for search: 11.743000 seconds
+    
+</pre>
+    </div>
+</body>
+</html>

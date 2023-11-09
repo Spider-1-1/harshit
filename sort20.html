@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div4">
+<pre>
+    #include < stdio.h >
+    #include < string.h >
+    #include < time.h >
+int step=-1;
+void quick_sort(char a[][10], int low, int high);
+int partition(char a[][10], int low, int high);
+
+void quick_sort(char a[][10], int low, int high) {
+    int pivot;
+    if (low < high) {
+        pivot = partition(a, low, high);
+        quick_sort(a, low, pivot - 1);
+        quick_sort(a, pivot + 1, high);
+    }
+}
+
+int partition(char a[][10], int low, int high) {
+    char pivot[10];
+    strcpy(pivot, a[high]);
+    int i = low - 1;
+    for (int j = low; j < high; j++) {
+        if (strcmp(a[j], pivot) <= 0) {
+            i++;
+            step++;
+            char temp[10];
+            strcpy(temp, a[i]);
+            strcpy(a[i], a[j]);
+            strcpy(a[j], temp);
+        }
+    }
+    char temp[10];
+    strcpy(temp, a[i + 1]);
+    strcpy(a[i + 1], a[high]);
+    strcpy(a[high], temp);
+    return (i + 1);
+}
+
+int main() {
+	clock_t start=clock();
+    int i;
+    char a[5][10];
+    clock_t end;
+    double cpu_time_used;
+    for (i = 0; i < 5; i++) {
+        printf("Enter the string at location %d: ", i + 1);
+        scanf("%s", a[i]);
+    }
+    quick_sort(a, 0, 4);
+    printf("Sorted array:\n");
+    for (i = 0; i < 5; i++) {
+        printf("%s\n", a[i]);
+    }
+            if(step==-1)
+    {
+    printf("Best complexity for quick sort\n");
+	}
+	else
+	{
+	printf("Worst complexity for quick sort\n");
+	}
+    end=clock();
+	cpu_time_used=((double)(end-start))/CLOCKS_PER_SEC;
+	printf("Time taken for search: %lf seconds\n",cpu_time_used);
+}
+
+</pre>
+    </div>
+    <div id="div5">
+<pre>
+    Enter the string at location 1: hello
+    Enter the string at location 2: hye
+    Enter the string at location 3: bye
+    Enter the string at location 4: welcome
+    Enter the string at location 5: book
+    Sorted array:
+    book
+    bye
+    hello
+    hye
+    welcome
+    Worst complexity for quick sort
+    Time taken for search: 8.467000 seconds
+    
+</pre>
+    </div>
+</body>
+</html>
